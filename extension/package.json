@@ -1,0 +1,13 @@
+{
+    "name": "dnbard.custom-css",
+    "title": "Custom CSS injector",
+    "description": "Inject custom CSS to Brackets IDE",
+    "homepage": "",
+    "version": "0.1.0",
+    "author": "Alex Bardanov <dnbard@gmail.com>",
+    "license": "MIT",
+    "engines": {
+        "brackets": ">=0.32.0"
+    },
+    "keywords": ["css", "inject", "style"]
+}

@@ -1,0 +1,45 @@
+#css-inject_icon{
+    content: "";
+    cursor: pointer;
+}
+
+.ext_cssinject .sets{
+    background: black;
+    color: white;
+    padding: 3px;
+    border-radius: 3px;
+    border: 1px solid gray;
+    margin-bottom: 10px;
+    min-height: 250px;
+    position: relative;
+}
+
+.set{
+    position: relative;
+    padding: 2px 0;
+}
+
+.set.selected{
+    background: rgba(128, 128, 128, 0.35);
+}
+
+.set > div{
+    display: inline-block;
+}
+
+.set > .set-name{
+    width: 50%;
+}
+
+.set > .set-type{
+    width: 15%;
+}
+
+.set > .set-timestamp{
+    width: 33%;
+    text-align: right;
+}
+
+.set > .set-type[type="local"]{
+    color: yellow;
+}

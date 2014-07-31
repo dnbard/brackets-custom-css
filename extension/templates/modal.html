@@ -1,0 +1,21 @@
+<div class="ext_cssinject modal">
+    <div class="modal-header">
+        <h1 class="dialog-title">Custom CSS Injection</h1>
+    </div>
+    <div class="modal-body">
+        <div class="sets" data-bind="foreach: sets">
+            <div class="set" data-bind="click: $parent.selectSet, css: { selected : $parent.selectedSet() == $data }">
+                <div class="set-name" data-bind="editableText: name" contenteditable="true"></div>
+                <div class="set-type" data-bind="text: type, attr: {type: type}"></div>
+                <div class="set-timestamp" data-bind="text: timestamp"></div>
+            </div>
+        </div>
+        <a class="dialog-button btn" data-bind="click: addNewSet">Create new Rule set</a>
+        <div data-bind="with: selectedSet">
+            <span data-bind="text: name"></span>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="dialog-button btn primary" data-button-id="ok">OK</button>
+    </div>
+</div>

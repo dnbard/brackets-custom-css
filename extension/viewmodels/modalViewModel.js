@@ -1,6 +1,7 @@
 define(function(require, exports, module){
     var ko = require('../vendor/knockout'),
-        _ = require('../vendor/lodash');
+        _ = require('../vendor/lodash'),
+        fs = require('../services/filesystem');
     
     function ModalViewModel(){
         this.sets = ko.observableArray([]);

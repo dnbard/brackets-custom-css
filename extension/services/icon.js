@@ -7,7 +7,7 @@ define(function(require, exports, module){
         
         icon = $('<a id="css-inject_icon"></a>');
         
-        icon.css('background', 'red');
+        icon.css('background', 'url(' + config.path + 'images/css.png)');
         icon.appendTo($("#main-toolbar .buttons"));
     }
     

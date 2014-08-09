@@ -30,7 +30,11 @@ define(function(require, exports, module){
         this.sets.push(set);
 
         fs.writeFile(cssCachePath + set.id + '.css', '', {})
-            .done(function(){
+            .done(function(err){
+                if (err){
+                    throw err;
+                }
+
                 DocumentManager.getDocumentForPath(cssCachePath + set.id + '.css')
                     .done(function(document){
                         DocumentManager.setCurrentDocument(document);

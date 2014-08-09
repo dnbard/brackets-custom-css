@@ -1,3 +1,5 @@
+var DocumentManager = require('document/DocumentManager');
+
 define(function(require, exports, module){
     var ko = require('../vendor/knockout'),
         config = require('../config'),
@@ -27,7 +29,13 @@ define(function(require, exports, module){
 
         this.sets.push(set);
 
-        fs.writeFile(cssCachePath + set.id + '.css', '', {});
+        fs.writeFile(cssCachePath + set.id + '.css', '', {})
+            .done(function(){
+                DocumentManager.getDocumentForPath(cssCachePath + set.id + '.css')
+                    .done(function(document){
+                        DocumentManager.setCurrentDocument(document);
+                    });
+            });
     }
     
     module.exports = ModalViewModel;

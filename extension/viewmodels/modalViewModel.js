@@ -1,7 +1,10 @@
 define(function(require, exports, module){
     var ko = require('../vendor/knockout'),
+        config = require('../config'),
         _ = require('../vendor/lodash'),
-        fs = require('../services/filesystem');
+        fs = require('../services/filesystem'),
+        guid = require('../services/guid'),
+        cssCachePath = config.path + 'cache/';
     
     function ModalViewModel(){
         this.sets = ko.observableArray([]);
@@ -13,12 +16,18 @@ define(function(require, exports, module){
     }
     
     ModalViewModel.prototype.addNewSet = function(model, event){
-        this.sets.push({
+        event.stopPropagation();
+
+        var set = {
             name: ko.observable('New Rule Set'),
             timestamp: new Date().toLocaleString(),
-            type: 'local'
-        });
-        event.stopPropagation();
+            type: 'local',
+            id: guid.generate()
+        };
+
+        this.sets.push(set);
+
+        fs.writeFile(cssCachePath + set.id + '.css', '', {});
     }
     
     module.exports = ModalViewModel;

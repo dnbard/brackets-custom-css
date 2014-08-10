@@ -4,35 +4,24 @@ define(function(require, exports){
         storageKey = "ext_injectcss";
 
     function init(){
-        storage = localStorage.getItem(storageKey) || {};
+        storage = JSON.parse(localStorage.getItem(storageKey) || '[]');
     }
 
-    function add(id, data){
-        storage[id] = data;
+    function set(st){
+        storage = st;
         save();
     }
 
-    function remove(id){
-        delete storage[id];
-        save();
+    function get(){
+        return storage;
     }
 
     function save(){
-        localStorage.setItem(storageKey, storage);
-    }
-
-    function get(id){
-        return storage[id];
-    }
-
-    function toArray(){
-        return _.toArray(storage);
+        localStorage.setItem(storageKey, JSON.stringify(storage));
     }
 
     init();
 
-    exports.add = add;
-    exports.modify = add;
-    exports.remove = remove;
-    exports.save = save;
+    exports.set = set;
+    exports.get = get;
 });

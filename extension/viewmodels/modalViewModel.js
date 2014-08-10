@@ -3,6 +3,7 @@ var DocumentManager = require('document/DocumentManager');
 define(function(require, exports, module){
     var ko = require('../vendor/knockout'),
         config = require('../config'),
+        storage = require('../services/storage'),
         _ = require('../vendor/lodash'),
         fs = require('../services/filesystem'),
         guid = require('../services/guid'),
@@ -38,6 +39,26 @@ define(function(require, exports, module){
     ModalViewModel.prototype.close = function(){
         this.dialog.remove();
         $('.modal-wrapper').remove();
+
+        storage.set(this.serialize());
+    }
+
+    ModalViewModel.prototype.serialize = function(){
+        var result = [];
+        _.each(this.sets(), function(set){
+            var sSet = {};
+            _.each(set, function(property, name){
+                if (typeof property === 'function'){
+                    sSet[name] = property();
+                } else {
+                    sSet[name] = property;
+                }
+            });
+
+            result.push(sSet);
+        });
+
+        return result;
     }
     
     ModalViewModel.prototype.addNewSet = function(model, event){

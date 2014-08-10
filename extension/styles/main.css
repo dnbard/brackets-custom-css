@@ -3,43 +3,54 @@
     cursor: pointer;
 }
 
-.ext_cssinject .sets{
-    background: black;
-    color: white;
-    padding: 3px;
-    border-radius: 3px;
-    border: 1px solid gray;
-    margin-bottom: 10px;
-    min-height: 250px;
-    position: relative;
-}
-
 .set{
-    position: relative;
-    padding: 2px 0;
+    display: block;
+    border: 1px dashed gray;
+    margin: 2px 0;
+    border-radius: 5px;
+    padding-top: 5px;
 }
 
-.set.selected{
-    background: rgba(128, 128, 128, 0.35);
-}
-
-.set > div{
+.set-icon{
+    width: 64px;
+    height: 64px;
     display: inline-block;
 }
 
-.set > .set-name{
-    width: 50%;
+.set-wrapper{
+    display: inline-block;
+    vertical-align: top;
+    width: 300px;
 }
 
-.set > .set-type{
-    width: 15%;
+.set-name{
+    font-size: 14px;
+    background: white;
+    display: block;
+    padding: 2px 5px;
+    border: 1px solid lightgray;
+    border-radius: 4px;
 }
 
-.set > .set-timestamp{
-    width: 33%;
-    text-align: right;
+.set-buttons{
+    display: inline-block;
+    vertical-align: top;
+    width: 186px;
+    height: 64px;
+    text-align: center;
 }
 
-.set > .set-type[type="local"]{
-    color: yellow;
+.set-buttons > .btn{
+    margin: 18px -2px;
+    border-radius: 0;
+}
+
+.set-buttons > .btn:first-child{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.set-buttons > .btn:last-child{
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
 }

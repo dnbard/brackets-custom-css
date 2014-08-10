@@ -4,10 +4,22 @@
     </div>
     <div class="modal-body">
         <div class="sets" data-bind="foreach: sets">
-            <div class="set" data-bind="click: $parent.selectSet, css: { selected : $parent.selectedSet() == $data }">
-                <div class="set-name" data-bind="editableText: name" contenteditable="true"></div>
-                <div class="set-type" data-bind="text: type, attr: {type: type}"></div>
-                <div class="set-timestamp" data-bind="text: timestamp"></div>
+            <div class="set">
+                <div class="set-icon" data-bind="style:{background: $parent.iconType($data)}"></div>
+                <div class="set-wrapper">
+                    <div class="set-name" data-bind="editableText: name" contenteditable="true"></div>
+                    <div class="set-type">
+                        <span data-bind="text: type"></span>
+                        <span> (</span>
+                        <span data-bind="text: id"></span>
+                        <span> )</span>
+                    </div>
+                    <div class="set-timestamp" data-bind="text: timestamp"></div>
+                </div>
+                <div class="set-buttons">
+                    <button class="btn" data-bind="click: $parent.openDocument">Edit</button>
+                    <button class="btn" data-bind="click: $parent.remove">Remove</button>
+                </div>
             </div>
         </div>
         <a class="dialog-button btn" data-bind="click: addNewSet">Create new Rule set</a>
@@ -16,6 +28,6 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button class="dialog-button btn primary" data-button-id="ok">OK</button>
+        <button class="dialog-button btn primary" data-bind="click: close">OK</button>
     </div>
 </div>

@@ -7,7 +7,7 @@ define(function(require, exports){
     function showHandler(){
         var dlg = Dialogs.showModalDialogUsingTemplate(modalTemplate)._$dlg;
         
-        ko.applyBindings(new ModalViewModel(), dlg[0]);
+        ko.applyBindings(new ModalViewModel(dlg), dlg[0]);
     }
     
     exports.showHandler = showHandler;

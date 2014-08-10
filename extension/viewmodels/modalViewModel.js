@@ -30,6 +30,8 @@ define(function(require, exports, module){
                     self.sets.remove(set);
                 });
         }
+
+        this.deserialize(storage.get());
     }
 
     ModalViewModel.prototype.iconType = function(){
@@ -64,17 +66,33 @@ define(function(require, exports, module){
     ModalViewModel.prototype.addNewSet = function(model, event){
         event.stopPropagation();
 
-        var set = {
-            name: ko.observable('New CSS'),
+        var set = this.createSet({
+            name: 'New CSS',
             timestamp: new Date().toLocaleString(),
             type: 'local',
             id: guid.generate()
-        };
+        });
 
         this.sets.push(set);
 
         fs.writeFile(cssCachePath + set.id + '.css', '', {});
     }
     
+    ModalViewModel.prototype.createSet = function(data){
+        return {
+            name: ko.observable(data.name),
+            timestamp: data.timestamp,
+            type: data.type,
+            id: data.id
+        }
+    }
+
+    ModalViewModel.prototype.deserialize = function(data){
+        _.each(data, _.bind(function(object){
+            var set = this.createSet(object);
+            this.sets.push(set);
+        }, this));
+    }
+
     module.exports = ModalViewModel;
 });

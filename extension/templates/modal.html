@@ -14,10 +14,16 @@
                         <span data-bind="text: id"></span>
                         <span> )</span>
                     </div>
-                    <div class="set-timestamp" data-bind="text: timestamp"></div>
+                    <div class="set-timestamp">
+                        <span class="set-enabled" data-bind="visible: active">Enabled</span>
+                        <span class="set-disabled" data-bind="visible: !active()">Disabled</span>
+                        <span>-</span>
+                        <span data-bind="text: timestamp"></span>
+                    </div>
                 </div>
                 <div class="set-buttons">
                     <button class="btn" data-bind="click: $parent.openDocument">Edit</button>
+                    <button class="btn" data-bind="click: $parent.toggleActive">1</button>
                     <button class="btn" data-bind="click: $parent.remove">Remove</button>
                 </div>
             </div>

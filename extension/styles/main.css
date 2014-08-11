@@ -32,6 +32,14 @@
     border-radius: 4px;
 }
 
+.set-enabled{
+    color: green;
+}
+
+.set-disabled{
+    color: red;
+}
+
 .set-buttons{
     display: inline-block;
     vertical-align: top;

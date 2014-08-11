@@ -7,6 +7,7 @@ define(function(require, exports, module){
         fs = require('../services/filesystem'),
         guid = require('../services/guid'),
         storage = require('../services/storage'),
+        CSSStorageControl = require('../services/css'),
         initializer = require('../services/initializer'),
         cssCachePath = config.path + 'cache/';
     
@@ -32,6 +33,21 @@ define(function(require, exports, module){
                     self.sets.remove(set);
                     initializer.remove(path);
                 });
+        }
+
+        this.toggleActive = function(set){
+            set.active(!set.active());
+
+            var status = set.active(),
+                path = cssCachePath + set.id + '.css';;
+
+            if (status){
+                initializer.add(path);
+                CSSStorageControl.add(path);
+            } else {
+                initializer.remove(path);
+                CSSStorageControl.remove(path);
+            }
         }
 
         this.deserialize(storage.get());
@@ -90,7 +106,8 @@ define(function(require, exports, module){
             name: ko.observable(data.name),
             timestamp: data.timestamp,
             type: data.type,
-            id: data.id
+            id: data.id,
+            active: ko.observable(data.active === undefined ? true : !!data.active)
         }
     }
 

@@ -33,10 +33,13 @@ define(function(require, exports, module){
 
     exports.init = function(){
         _.each(storage.get(), function(set){
-            var path = config.path + 'cache/' + set.id + '.css';
-            CSSControlService.add(path);
+            var path = config.path + 'cache/' + set.id + '.css',
+                isActive = set.active === undefined? true : !!set.active;
 
-            DocumentManager.getDocumentForPath(path)
+            if(isActive){
+                CSSControlService.add(path);
+
+                DocumentManager.getDocumentForPath(path)
                 .done(function(document){
                     watchList.push({
                         hash: document.file._hash,
@@ -44,19 +47,20 @@ define(function(require, exports, module){
                         document: document
                     });
                 });
-
-            setInterval(function(){
-                _.each(watchList, function(doc){
-                    if (doc.hash !== doc.document.file._hash){
-                        doc.hash = doc.document.file._hash;
-                        console.log(doc);
-
-                        //TODO: remove CSS reference from DOM
-                        CSSControlService.remove(doc.path);
-                        CSSControlService.add(doc.path);
-                    }
-                });
-            }, 1000);
+            }
         });
+
+        setInterval(function(){
+            _.each(watchList, function(doc){
+                if (doc.hash !== doc.document.file._hash){
+                    doc.hash = doc.document.file._hash;
+                    console.log(doc);
+
+                    //TODO: remove CSS reference from DOM
+                    CSSControlService.remove(doc.path);
+                    CSSControlService.add(doc.path);
+                }
+            });
+        }, 1000);
     }
 });

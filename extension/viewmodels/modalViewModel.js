@@ -2,11 +2,12 @@ var DocumentManager = require('document/DocumentManager');
 
 define(function(require, exports, module){
     var ko = require('../vendor/knockout'),
-        config = require('../config'),
-        storage = require('../services/storage'),
         _ = require('../vendor/lodash'),
+        config = require('../config'),
         fs = require('../services/filesystem'),
         guid = require('../services/guid'),
+        storage = require('../services/storage'),
+        initializer = require('../services/initializer'),
         cssCachePath = config.path + 'cache/';
     
     function ModalViewModel(dialog){
@@ -25,9 +26,11 @@ define(function(require, exports, module){
         }
         
         this.remove = function(set){
-            fs.moveToTrash(cssCachePath + set.id + '.css')
+            var path = cssCachePath + set.id + '.css';
+            fs.moveToTrash(path)
                 .then(function(){
                     self.sets.remove(set);
+                    initializer.remove(path);
                 });
         }
 
@@ -71,11 +74,15 @@ define(function(require, exports, module){
             timestamp: new Date().toLocaleString(),
             type: 'local',
             id: guid.generate()
-        });
+        }),
+            path = cssCachePath + set.id + '.css';
 
         this.sets.push(set);
 
-        fs.writeFile(cssCachePath + set.id + '.css', '', {});
+        fs.writeFile(path, '', {})
+            .done(function(){
+                initializer.add(path);
+            });
     }
     
     ModalViewModel.prototype.createSet = function(data){

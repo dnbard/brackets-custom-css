@@ -15,16 +15,27 @@
                         <span> )</span>
                     </div>
                     <div class="set-timestamp">
-                        <span class="set-enabled" data-bind="visible: active">Enabled</span>
-                        <span class="set-disabled" data-bind="visible: !active()">Disabled</span>
+                        <span class="set-enabled" data-bind="visible: active">
+                            <i class="fa fa-check"></i> Enabled
+                        </span>
+                        <span class="set-disabled" data-bind="visible: !active()">
+                            <i class="fa fa-times"></i> Disabled
+                        </span>
                         <span>-</span>
                         <span data-bind="text: timestamp"></span>
                     </div>
                 </div>
                 <div class="set-buttons">
-                    <button class="btn" data-bind="click: $parent.openDocument">Edit</button>
-                    <button class="btn" data-bind="click: $parent.toggleActive">1</button>
-                    <button class="btn" data-bind="click: $parent.remove">Remove</button>
+                    <button class="btn" data-bind="click: $parent.openDocument">
+                        <i class="fa fa-pencil"></i>
+                    </button>
+                    <button class="btn" data-bind="click: $parent.toggleActive">
+                        <span data-bind="visible: active"><i class="fa fa-times"></i></span>
+                        <span data-bind="visible: !active()"><i class="fa fa-check"></i></span>
+                    </button>
+                    <button class="btn" data-bind="click: $parent.remove">
+                        <i class="fa fa-trash-o"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -32,5 +43,6 @@
     <div class="modal-footer">
         <button class="dialog-button btn primary" data-bind="click: close">Close</button>
         <a class="dialog-button btn" data-bind="click: addNewSet">Create a local CSS</a>
+        <a href="https://github.com/dnbard/brackets-custom-css/wiki" id="visit-wiki">Visit Brackets CSS Inject Wiki</a>
     </div>
 </div>

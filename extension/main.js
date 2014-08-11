@@ -6,6 +6,7 @@ define(function (require, exports, module) {
     require('./bindings/editableText');
 
     ExtensionUtils.loadStyleSheet(module, 'styles/main.css');
+    ExtensionUtils.loadStyleSheet(module, 'styles/awesome.css');
 
     iconService.init();
     iconService.click(modalService.showHandler);

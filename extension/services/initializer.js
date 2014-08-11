@@ -4,7 +4,7 @@ define(function(require, exports, module){
     var storage = require('./storage'),
         _ = require('../vendor/lodash'),
         config = require('../config'),
-        ExtensionUtils = brackets.getModule('utils/ExtensionUtils'),
+        CSSControlService = require('./css'),
         watchList = [];
 
     exports.add = function(path){
@@ -34,7 +34,7 @@ define(function(require, exports, module){
     exports.init = function(){
         _.each(storage.get(), function(set){
             var path = config.path + 'cache/' + set.id + '.css';
-            ExtensionUtils.loadStyleSheet(module, path);
+            CSSControlService.add(path);
 
             DocumentManager.getDocumentForPath(path)
                 .done(function(document){
@@ -51,7 +51,9 @@ define(function(require, exports, module){
                         doc.hash = doc.document.file._hash;
                         console.log(doc);
 
-                        ExtensionUtils.loadStyleSheet(module, doc.path);
+                        //TODO: remove CSS reference from DOM
+                        CSSControlService.remove(doc.path);
+                        CSSControlService.add(doc.path);
                     }
                 });
             }, 1000);

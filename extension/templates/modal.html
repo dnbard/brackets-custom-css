@@ -26,14 +26,14 @@
                     </div>
                 </div>
                 <div class="set-buttons">
-                    <button class="btn" data-bind="click: $parent.openDocument">
+                    <button class="btn" title="Edit CSS" data-bind="click: $parent.openDocument">
                         <i class="fa fa-pencil"></i>
                     </button>
                     <button class="btn" data-bind="click: $parent.toggleActive">
                         <span data-bind="visible: active"><i class="fa fa-times"></i></span>
                         <span data-bind="visible: !active()"><i class="fa fa-check"></i></span>
                     </button>
-                    <button class="btn" data-bind="click: $parent.remove">
+                    <button class="btn" title="Remove CSS" data-bind="click: $parent.remove">
                         <i class="fa fa-trash-o"></i>
                     </button>
                 </div>

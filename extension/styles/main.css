@@ -1,6 +1,23 @@
 #css-inject_icon{
     content: "";
     cursor: pointer;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    vertical-align: top;
+    font-size: 16pt;
+    text-align: center;
+    text-shadow: 1px 1px 1px #BBBBBB;
+    color: #BBBBBB;
+    padding: 1px 0;
+}
+
+#css-inject_icon:hover{
+    text-decoration: none;
+}
+
+#css-inject_icon[active="true"]{
+    color: #78B2F2;
 }
 
 .set{

@@ -5,9 +5,7 @@ define(function(require, exports, module){
     function init(){
         var imagePath = config.path + 'images/icon.png';
         
-        icon = $('<a id="css-inject_icon"></a>');
-        
-        icon.css('background', 'url(' + config.path + 'images/css.png)');
+        icon = $('<a id="css-inject_icon" class="fa fa-css3"></a>');
         icon.appendTo($("#main-toolbar .buttons"));
     }
     
@@ -16,9 +14,17 @@ define(function(require, exports, module){
             throw new Error('Icon is not initialized');
         }
         
-        icon.on('click', handler);
+        icon.on('click', function(event){
+            $(event.target).attr('active', 'true');
+            handler(event);
+        });
+    }
+
+    function reset(){
+        icon.attr('active', 'false');
     }
     
     exports.init = init;
     exports.click = click;
+    exports.reset = reset;
 });

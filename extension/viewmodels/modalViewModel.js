@@ -6,6 +6,7 @@ define(function(require, exports, module){
         config = require('../config'),
         fs = require('../services/filesystem'),
         guid = require('../services/guid'),
+        icon = require('../services/icon'),
         storage = require('../services/storage'),
         CSSStorageControl = require('../services/css'),
         initializer = require('../services/initializer'),
@@ -60,6 +61,7 @@ define(function(require, exports, module){
     ModalViewModel.prototype.close = function(){
         this.dialog.remove();
         $('.modal-wrapper').remove();
+        icon.reset();
 
         storage.set(this.serialize());
     }

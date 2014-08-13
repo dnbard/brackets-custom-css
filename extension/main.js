@@ -12,4 +12,5 @@ define(function (require, exports, module) {
     iconService.click(modalService.showHandler);
 
     require('./services/initializer').init();
+    require('./services/onlineTracking').init();
 });

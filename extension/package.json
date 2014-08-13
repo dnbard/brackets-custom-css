@@ -2,8 +2,8 @@
     "name": "dnbard.custom-css",
     "title": "Custom CSS injector",
     "description": "Customize Brackets IDE with own CSS rules. Inject your own styles inside of Brackets with Livereload. Useful for theme creation.",
-    "homepage": "",
-    "version": "0.1.1",
+    "homepage": "https://github.com/dnbard/brackets-custom-css",
+    "version": "0.1.2",
     "author": "Alex Bardanov <dnbard@gmail.com>",
     "license": "MIT",
     "engines": {

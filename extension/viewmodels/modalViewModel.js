@@ -43,7 +43,7 @@ define(function(require, exports, module){
                 path = cssCachePath + set.id + '.css';;
 
             if (status){
-                initializer.add(path);
+                initializer.add(path, set);
                 CSSStorageControl.add(path);
             } else {
                 initializer.remove(path);
@@ -99,7 +99,7 @@ define(function(require, exports, module){
 
         fs.writeFile(path, '', {})
             .done(function(){
-                initializer.add(path);
+                initializer.add(path, set);
             });
     }
     

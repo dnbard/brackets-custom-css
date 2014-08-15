@@ -7,8 +7,8 @@ define(function(require, exports, module){
         CSSControlService = require('./css'),
         watchList = [];
 
-    exports.add = function(path){
-        if (_.filter(watchList, function(subscription){
+    exports.add = function(path, set){
+        if (_.find(watchList, function(subscription){
             return subscription.path === path;
         })){
             //this file is already in watching list
@@ -20,7 +20,8 @@ define(function(require, exports, module){
                 watchList.push({
                     hash: document.file._hash,
                     path: document.file._path,
-                    document: document
+                    document: document,
+                    relativePath: '../cache/' + set.id + '.css'
                 });
             });
     }
@@ -37,13 +38,14 @@ define(function(require, exports, module){
                 isActive = set.active === undefined? true : !!set.active;
 
             if(isActive){
-                CSSControlService.add(path);
+                CSSControlService.add('../cache/' + set.id + '.css');
 
                 DocumentManager.getDocumentForPath(path)
                 .done(function(document){
                     watchList.push({
                         hash: document.file._hash,
                         path: document.file._path,
+                        relativePath: '../cache/' + set.id + '.css',
                         document: document
                     });
                 });
@@ -54,11 +56,12 @@ define(function(require, exports, module){
             _.each(watchList, function(doc){
                 if (doc.hash !== doc.document.file._hash){
                     doc.hash = doc.document.file._hash;
-                    console.log(doc);
 
-                    //TODO: remove CSS reference from DOM
                     CSSControlService.remove(doc.path);
-                    CSSControlService.add(doc.path);
+                    CSSControlService.add(doc.relativePath);
+                    if (!doc.relativePath){
+                        console.error('Relative path to document must not be undefined');
+                    }
                 }
             });
         }, 1000);

@@ -40,13 +40,14 @@ define(function(require, exports, module){
             set.active(!set.active());
 
             var status = set.active(),
-                path = cssCachePath + set.id + '.css';;
+                absPath = cssCachePath + set.id + '.css',
+                path = '../cache/' + set.id + '.css';
 
             if (status){
-                initializer.add(path, set);
+                initializer.add(absPath, set);
                 CSSStorageControl.add(path);
             } else {
-                initializer.remove(path);
+                initializer.remove(absPath);
                 CSSStorageControl.remove(path);
             }
         }

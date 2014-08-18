@@ -14,6 +14,6 @@ define(function(require, exports, module){
             throw new Error('Invalid argument');
         }
 
-        $('link[href="' + path + '"]').remove();
+        $('link[href*="' + path + '"]').remove();
     }
 });

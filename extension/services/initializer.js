@@ -57,7 +57,7 @@ define(function(require, exports, module){
                 if (doc.hash !== doc.document.file._hash){
                     doc.hash = doc.document.file._hash;
 
-                    CSSControlService.remove(doc.path);
+                    CSSControlService.remove(doc.relativePath);
                     CSSControlService.add(doc.relativePath);
                     if (!doc.relativePath){
                         console.error('Relative path to document must not be undefined');

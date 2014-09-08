@@ -6,7 +6,7 @@ define(function (require, exports, module) {
     require('./bindings/editableText');
 
     ExtensionUtils.loadStyleSheet(module, 'styles/main.css');
-    ExtensionUtils.loadStyleSheet(module, 'styles/awesome.css');
+    ExtensionUtils.loadStyleSheet(module, 'http://cdn.jsdelivr.net/fontawesome/4.2.0/css/font-awesome.min.css');
 
     iconService.init();
     iconService.click(modalService.showHandler);
